@@ -3,6 +3,7 @@ package com.bank;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Bank {
 	static final int EXIT = 5;
     static ArrayList<User> users = new ArrayList<>();
@@ -12,17 +13,18 @@ public class Bank {
         users.add(new User(2,"Usuario2",2,10000.0));
         users.add(new User(3,"Usuario3",3,1000000.0));
         users.add(new User(4,"Usuario4",4,500.0));
-
     }
 
     public static void main(String[] args) {
+    	
         int opcion = 0;
         initBank();
         while(opcion != EXIT){
             opcion = menu();
         };
-
+        
     }
+    
     public static int menu(){
         System.out.println("Banco AspectJ");
         System.out.println("------------------------------------");
@@ -37,7 +39,7 @@ public class Bank {
         case 1:
             System.out.println("Crear Usuario");
             System.out.println("------------------------------------");
-            createUser();
+            crearUser();
         break;
         case 2:
             System.out.println("Realizar transaccion");
@@ -69,7 +71,7 @@ public class Bank {
         return inputText;
     }
 
-    public static void createUser(){
+    public static void crearUser(){
         String nombre = readConsole("Nombre :");
         int id = Integer.valueOf(readConsole("Id: "));
         double money = Double.valueOf(readConsole("Dinero: "));
