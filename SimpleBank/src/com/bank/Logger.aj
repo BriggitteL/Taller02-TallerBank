@@ -1,6 +1,8 @@
 package com.bank;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -32,7 +34,10 @@ public aspect Logger {
     	        if(!archivo.exists()){
     	        	try {
     	        		archivo.createNewFile();
-    	        		PrintWriter pw = new PrintWriter("Log.txt");
+    	        		FileWriter fw= new FileWriter("Log.txt", true);
+    	        		BufferedWriter bw = new BufferedWriter(fw);
+    	        		PrintWriter pw = new PrintWriter(bw);
+    	        		//PrintWriter pw = new PrintWriter("Log.txt");
     	        		System.out.println("\nARCHIVO NUEVO\n");
     	    			pw.println("\nTipo de transaccion: Realizar Transaccion"); //se debe concatenar con el tipo de transaccion
     	    			pw.println("\nHora de transaccion: "+dateFormat.format(date)+"\n");
@@ -44,21 +49,17 @@ public aspect Logger {
     	        	
     	        }
     	        try {
-    	    		PrintWriter pw = new PrintWriter("Log.txt");
+    	        	FileWriter fw= new FileWriter("Log.txt", true);
+	        		BufferedWriter bw = new BufferedWriter(fw);
+	        		PrintWriter pw = new PrintWriter(bw);
+    	        	//PrintWriter pw = new PrintWriter("Log.txt");
     	    		pw.println("\nTipo de transaccion: Realizar Transaccion"); //se debe concatenar con el tipo de transaccion
 	    			pw.println("\nHora de transaccion: "+dateFormat.format(date)+"\n");
     	    		pw.close();
     	    	}catch(IOException ex) {	
     	    	}
     	        
-    	        try {
-    				PrintWriter pw = new PrintWriter("Log.txt");
-    				pw.println("\nTipo de transaccion: Realizar Transaccion"); //se debe concatenar con el tipo de transaccion
-	    			pw.println("\nHora de transaccion: "+dateFormat.format(date)+"\n");
-    				pw.close();
-    			}catch(Exception err){
-    				
-    	    	}
+    	       
     	
     	}
     pointcut successRetiro(): call(* moneyWith*(..) );
@@ -80,10 +81,13 @@ public aspect Logger {
     	        if(!archivo.exists()){
     	        	try {
     	        		archivo.createNewFile();
-    	        		PrintWriter pw = new PrintWriter("Log.txt");
+    	        		FileWriter fw= new FileWriter("Log.txt", true);
+    	        		BufferedWriter bw = new BufferedWriter(fw);
+    	        		PrintWriter pw = new PrintWriter(bw);
     	        		System.out.println("\nARCHIVO NUEVO\n");
     	    			pw.println("\nTipo de transaccion: Retirar dinero"); //se debe concatenar con el tipo de transaccion
     	    			pw.println("\nHora de transaccion: "+dateFormat.format(date)+"\n");
+    	    			
     	    			pw.close();
     	        	}catch(IOException ex) {	
     	        	}
@@ -92,21 +96,17 @@ public aspect Logger {
     	        	
     	        }
     	        try {
-    	    		PrintWriter pw = new PrintWriter("Log.txt");
+    	        	FileWriter fw= new FileWriter("Log.txt", true);
+	        		BufferedWriter bw = new BufferedWriter(fw);
+	        		PrintWriter pw = new PrintWriter(bw);
+    	    		//PrintWriter pw = new PrintWriter("Log.txt");
     	    		pw.println("\nTipo de transaccion: Retirar dinero"); //se debe concatenar con el tipo de transaccion
 	    			pw.println("\nHora de transaccion: "+dateFormat.format(date)+"\n");
     	    		pw.close();
     	    	}catch(IOException ex) {	
     	    	}
-    	        
-    	        try {
-    				PrintWriter pw = new PrintWriter("Log.txt");
-    				pw.println("\nTipo de transaccion: Retirar dinero"); //se debe concatenar con el tipo de transaccion
-	    			pw.println("\nHora de transaccion: "+dateFormat.format(date)+"\n");
-    				pw.close();
-    			}catch(Exception err){
-    				
-    	    	}
+    	       
+    	       
     	
     }
 }
